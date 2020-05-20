@@ -22,12 +22,6 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
-    
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)'
-    Contents: '**/*.jar'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: UniversalPackages@0
   inputs:
@@ -37,6 +31,13 @@ steps:
     vstsFeedPublish: 'ba305a05-b26f-435d-a679-f81c724f4b7f'
     vstsFeedPackagePublish: 'Jar File'
     versionOption: 'patch'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '**/*.jar'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 
 - task: PublishBuildArtifacts@1
   inputs:
