@@ -30,11 +30,11 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
-inputs:
-  command: 'push'
-        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-        nuGetFeedType: 'internal'
-        publishVstsFeed: 'ba305a05-b26f-435d-a679-f81c724f4b7f'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'ba305a05-b26f-435d-a679-f81c724f4b7f'
 
 - task: PublishBuildArtifacts@1
   inputs:
