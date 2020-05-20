@@ -32,7 +32,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.jar;!$(Build.ArtifactStagingDirectory)/**/*.jar'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'ba305a05-b26f-435d-a679-f81c724f4b7f'
 
