@@ -36,19 +36,23 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
-- powershell: |
-   git --version
-   New-Item -Path "$(Build.ArtifactStagingDirectory)" -Value "This is a text string."
-   Write-Host "new file created, now adding file to git"
-   git add -A
-   Write-Host "setup author info"
-   git config user.email mrz03@mail.aub.edu
-   git config user.name "MarioZouein"
-   Write-Host "git commit with message"
-   git commit -a -m "Test Commit from Azure DevOps"
-   Write-Host "git push"
-   git push
-   
-  errorActionPreference: continue
-  ignoreLASTEXITCODE: true
-  displayName: 'PowerShell Script'
+- checkout: self
+  persistCredentials: true
+  clean: true
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      git --version
+      New-Item -Path "$(Build.ArtifactStagingDirectory)" -Value "This is a text string."
+      Write-Host "new file created, now adding file to git"
+      git add -A
+      Write-Host "setup author info"
+      git config user.email mrz03@mail.aub.edu
+      git config user.name "MarioZouein"
+      Write-Host "git commit with message"
+      git commit -a -m "Test Commit from Azure DevOps"
+      Write-Host "git push"
+      git push
+    ignoreLASTEXITCODE: true
